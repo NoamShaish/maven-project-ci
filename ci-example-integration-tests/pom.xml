@@ -13,5 +13,11 @@
 
     <artifactId>ci-example-integration-tests</artifactId>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>com.nordea.gpdw</groupId>
+            <artifactId>ci-example-assembly</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

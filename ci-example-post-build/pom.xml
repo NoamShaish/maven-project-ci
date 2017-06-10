@@ -13,4 +13,11 @@
 
     <artifactId>ci-example-post-build</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.nordea.gpdw</groupId>
+            <artifactId>ci-example-integration-tests</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
