@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <groupId>com.nordea.gpdw</groupId>
+    <artifactId>ci-example</artifactId>
+    <version>1.0.0-1-SNAPSHOT</version>
+
+    <modules>
+        <module>ci-example-code</module>
+        <module>ci-example-assembly</module>
+        <module>ci-example-integration-tests</module>
+        <module>ci-example-post-build</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
+        <maven.scalatest.plugin.version>1.1.0</maven.scalatest.plugin.version>
+        <maven.scoverage.plugin.version>1.1.1</maven.scoverage.plugin.version>
+        <maven.shade.plugin.version>2.3</maven.shade.plugin.version>
+
+        <!-- scala stuff versions -->
+        <scala.version>2.10.6</scala.version>
+        <scala.postfix>_2.10</scala.postfix>
+        <scala.compat.version>2.10</scala.compat.version>
+
+        <!-- test versions-->
+        <mockito.version>2.2.22</mockito.version>
+        <scalatest.version>3.0.1</scalatest.version>
+
+        <codehaus.plexus.version>3.0.24</codehaus.plexus.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest${scala.postfix}</artifactId>
+                <version>${scalatest.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>net.alchim31.maven</groupId>
+                    <artifactId>scala-maven-plugin</artifactId>
+                    <version>${maven.scala.plugin.version}</version>
+
+                </plugin>
+                <plugin>
+                    <groupId>org.scalatest</groupId>
+                    <artifactId>scalatest-maven-plugin</artifactId>
+                    <version>${maven.scalatest.plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.plexus</groupId>
+                            <artifactId>plexus-utils</artifactId>
+                            <version>${codehaus.plexus.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven.shade.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
