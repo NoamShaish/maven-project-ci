@@ -8,7 +8,7 @@
 
     <groupId>com.nordea.gpdw</groupId>
     <artifactId>ci-example</artifactId>
-    <version>1.0.0-1-SNAPSHOT</version>
+    <version>1.0.0-${revision}</version>
 
     <modules>
         <module>ci-example-code</module>
@@ -17,7 +17,14 @@
         <module>ci-example-post-build</module>
     </modules>
 
+    <scm>
+        <developerConnection>scm:git:http://github.com/NoamShaish/maven-project-ci.git</developerConnection>
+        <connection>scm:git:http://github.com/NoamShaish/maven-project-ci.git</connection>
+    </scm>
+
     <properties>
+        <revision>0-SNAPSHOT</revision>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
         <maven.scalatest.plugin.version>1.1.0</maven.scalatest.plugin.version>
@@ -53,6 +60,22 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <plugins>
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-scm-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.5</version>
+                <configuration>
+                    <tag>${project.artifactId}-${project.version}</tag>
+                    <configuration>
+                        <username>noamshaish@gmail.com</username>
+                        <password>3rgZAJnH</password>
+                    </configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+
         <pluginManagement>
             <plugins>
                 <plugin>
