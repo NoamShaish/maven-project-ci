@@ -70,6 +70,11 @@
         </profile>
         <profile>
             <id>remote-integration-test</id>
+            <activation>
+                <property>
+                    <name>some-jenkins-propert</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -85,7 +90,7 @@
                                 <configuration>
                                     <descriptor>assembly/assembly.xml</descriptor>
                                     <finalName>${project.parent.artifactId}-${project.version}</finalName>
-                                    <outputDirectory>../target</outputDirectory>
+                                    <outputDirectory>${project.parent.basedir}/target</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>

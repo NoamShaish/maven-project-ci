@@ -18,6 +18,7 @@
             <groupId>com.nordea.gpdw</groupId>
             <artifactId>ci-example-assembly</artifactId>
             <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
 
         <dependency>
@@ -32,6 +33,28 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>local-integration-test</id>
+            <properties>
+                <execution.type>local</execution.type>
+                <dir>${project.parent.basedir}/target/${project.parent.artifactId}-${project.version}</dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>remote-integration-test</id>
+            <activation>
+                <property>
+                    <name>some-jenkins-propert</name>
+                </property>
+            </activation>
+            <properties>
+                <execution.type>remote</execution.type>
+                <dir>ssh path</dir>
+            </properties>
+        </profile>
+
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -75,6 +98,7 @@
                         </goals>
                         <configuration>
                             <suffixes>(?&lt;!Integration)(Test|Spec)</suffixes>
+                            <config>execution.type=${execution.type},dir=${dir}</config>
                         </configuration>
                     </execution>
                 </executions>
