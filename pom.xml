@@ -68,10 +68,10 @@
                 <version>1.9.5</version>
                 <configuration>
                     <tag>${project.artifactId}-${project.version}</tag>
-                    <configuration>
-                        <username>noamshaish@gmail.com</username>
-                        <password>3rgZAJnH</password>
-                    </configuration>
+                    <!--<configuration>-->
+                        <!--<username>noamshaish@gmail.com</username>-->
+                        <!--<password>3rgZAJnH</password>-->
+                    <!--</configuration>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -82,7 +82,20 @@
                     <groupId>net.alchim31.maven</groupId>
                     <artifactId>scala-maven-plugin</artifactId>
                     <version>${maven.scala.plugin.version}</version>
-
+                    <configuration>
+                        <args>
+                            <arg>-deprecation</arg>
+                            <arg>-feature</arg>
+                            <arg>-unchecked</arg>
+                            <arg>-Xfatal-warnings</arg>
+                            <arg>-Xlint</arg>
+                            <arg>-Yno-adapted-args</arg>
+                            <arg>-Ywarn-dead-code</arg>
+                            <arg>-Ywarn-numeric-widen</arg>
+                            <arg>-Ywarn-value-discard</arg>
+                            <arg>-Xfuture</arg>
+                        </args>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.scalatest</groupId>
